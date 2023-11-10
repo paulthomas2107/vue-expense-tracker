@@ -4,7 +4,7 @@
     <Balance :total="+total" />
     <IncomeExpenses :income="+income" :expenses="+expenses" />
     <TransactionList :transactions="transactions" />
-    <AddTransaction />
+    <AddTransaction @transactionSubmitted="handleTransactionSubmitted" />
   </div>
 </template>
 
@@ -52,4 +52,19 @@ const expenses = computed(() => {
     }, 0)
     .toFixed(2);
 });
+
+const generateUniqueId = () => {
+  return Math.floor(Math.random() * 1000000);
+};
+
+// Add tx
+const handleTransactionSubmitted = (transactionData) => {
+  transactions.value.push({
+    id: generateUniqueId(),
+    text: transactionData.text,
+    amount: transactionData.amount,
+  });
+
+  // Unique id
+};
 </script>
